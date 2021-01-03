@@ -82,7 +82,7 @@ public class CreateFileApp {
 		FileWriter writerFile;
 		BufferedWriter createdWriter = null;
 		try {
-			writerFile = new FileWriter(inFileName);
+			writerFile = new FileWriter(inFileName, true); //second argument of true changes this append mode
 			createdWriter = new BufferedWriter(writerFile);
 			System.out.println("created or recreated writeFile");
 		} catch (IOException e) {

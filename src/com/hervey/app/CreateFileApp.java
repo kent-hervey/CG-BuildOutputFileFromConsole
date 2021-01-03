@@ -34,6 +34,7 @@ public class CreateFileApp {
 		try {
 			writerFile = new FileWriter(inFileName);
 			createdWriter = new BufferedWriter(writerFile);
+			System.out.println("created writeFile");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -44,6 +45,7 @@ public class CreateFileApp {
 		// during prototyping, file name is given as literal
 		// later will be collected from console
 		String fileName = "example.txt";
+		System.out.println("fileName is:  " + fileName);
 		return fileName;
 	}
 

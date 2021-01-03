@@ -30,17 +30,20 @@ public class CreateFileApp {
 		
 		String lineToWrite = "abe does a job";
 		
-		lineToWrite = returnLineFromConsole();
+//		lineToWrite = returnLineFromConsole();
+//		
+//		writeLine(bufferedWriter, lineToWrite);
 		
-		writeLine(bufferedWriter, lineToWrite);
-		
-		lineToWrite = returnLineFromConsole();
-		
-		writeLine(bufferedWriter, lineToWrite);
-		
+
+		int maxIteration = 5;	
+		int counter = 0;
 		while(true) {
-			String isExit = "exit";
-			if(isExit == "exit") {
+		counter++;
+		lineToWrite = returnLineFromConsole();
+		
+		writeLine(bufferedWriter, lineToWrite);			
+		System.out.println("lineToWrite>>"+lineToWrite+"<<<");
+			if(lineToWrite.equals("exit")  || counter >= maxIteration) {
 				System.out.println("time to break out of here");
 				break;
 			}
@@ -70,7 +73,7 @@ public class CreateFileApp {
 	private static void writeLine(BufferedWriter bufferedWriter, String lineToWrite) throws IOException {
 		bufferedWriter.newLine();
 		bufferedWriter.write(lineToWrite);
-		
+		System.out.println(" we wrote newLine then " + lineToWrite);
 	}
 
 
@@ -88,10 +91,17 @@ public class CreateFileApp {
 		return createdWriter;
 	}
 
-	static String fetchFileName() {
+	static String fetchFileName() throws IOException {
 		// during prototyping, file name is given as literal
 		// later will be collected from console
 		String fileName = "example.txt";
+		
+		InputStream inputStream = System.in;
+		Reader inputStreamReader = new InputStreamReader(inputStream);
+		BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+		System.out.println("Type name of file to record your lines");
+		fileName = bufferedReader.readLine();
+	
 		System.out.println("fileName is:  " + fileName);
 		return fileName;
 	}

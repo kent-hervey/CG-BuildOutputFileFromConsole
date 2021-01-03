@@ -38,6 +38,15 @@ public class CreateFileApp {
 		
 		writeLine(bufferedWriter, lineToWrite);
 		
+		while(true) {
+			String isExit = "exit";
+			if(isExit == "exit") {
+				System.out.println("time to break out of here");
+				break;
+			}
+			
+		}
+		
 		
 		bufferedWriter.close() ;
 

@@ -1,8 +1,12 @@
 package com.hervey.app;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 
 /*
 •	Read the file name from the console.
@@ -24,9 +28,43 @@ public class CreateFileApp {
 
 		BufferedWriter bufferedWriter = fetchBufferedWriterObject(fileName);
 		
+		String lineToWrite = "abe does a job";
+		
+		lineToWrite = returnLineFromConsole();
+		
+		writeLine(bufferedWriter, lineToWrite);
+		
+		lineToWrite = returnLineFromConsole();
+		
+		writeLine(bufferedWriter, lineToWrite);
+		
+		
 		bufferedWriter.close() ;
 
 	}
+
+
+
+	private static String returnLineFromConsole() throws IOException {
+		// TODO Auto-generated method stub
+		InputStream inputStream = System.in;
+		Reader inputStreamReader = new InputStreamReader(inputStream);
+		BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+		System.out.println("Type Line for file entry");
+		String lineForFile = bufferedReader.readLine();
+		
+		return lineForFile ;
+	}
+
+
+
+	private static void writeLine(BufferedWriter bufferedWriter, String lineToWrite) throws IOException {
+		bufferedWriter.newLine();
+		bufferedWriter.write(lineToWrite);
+		
+	}
+
+
 
 	private static BufferedWriter fetchBufferedWriterObject(String inFileName) {
 		FileWriter writerFile;
@@ -34,7 +72,7 @@ public class CreateFileApp {
 		try {
 			writerFile = new FileWriter(inFileName);
 			createdWriter = new BufferedWriter(writerFile);
-			System.out.println("created writeFile");
+			System.out.println("created or recreated writeFile");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
